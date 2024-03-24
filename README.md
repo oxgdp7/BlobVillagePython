@@ -28,14 +28,19 @@ cancelled the simulation.
 
 # Types of blobs
 Red blob - Chops down 1 tree (1 action)
+
 Blue blob - Collects 1 water (1 action)
+
 Green blob - Plants 1 tree as long as there is a seed (2 actions)
+
 Orange blob - Plants and chops 1 tree as long as there is a seed (2 actions)
+
 Purple blob - Makes x blobs repeat their action 1 time (x * 1 actions)
+
 Yellow blob - makes 1 blob repeat its action y times (y * 1 actions)
 
 
-# Things to notes:
+# Things to notes
 ## Seeds
 At the start of every round, if there is alteast one tree present, then
 there will be infinite seeds so enough for all blobs that need to collect a
@@ -77,135 +82,255 @@ acyclic.
 
 # Example Simulation
 (order of blobs in written order)
+
 Purple: children (Red, Green, Blue1)
+
 Blue2
+
 Yellow(x=1): children (Orange)
 
+
 Environment: 1 tree, 1 water per round
+
 Target: 5 wood, 5 water
 
 Initial state: All blobs active
 
-Round 1: There is 1 tree so there are seeds.
+## Round 1
+There is 1 tree so there are seeds.
+
 Purple - No sleeping children so waits
+
 Red - Chops down 1 tree (0 trees left)
+
 Green - Collects a seed
+
 Blue1 - Collects 1 water (0 water left)
+
 Blue2 - No available water so waits
+
 Yellow - No sleeping children so waits
+
 Orange - Collects a seeds
+
 Collected: (1 wood, 1 water)
 
 Synchronising:
+
 Purple - Waiting
+
 Red - Sleeping
+
 Green - Active
+
 Blue1 - Sleeping
+
 Blue2 - Waiting
+
 Yellow - Waiting
+
 Orange - Active
+
 Available water reset to 1
 
-Round 2: There are no trees so there are no seeds.
+## Round 2
+
+There are no trees so there are no seeds.
+
 Purple - Wakes Red
+
 Red - Sleeps (will wake at the end)
+
 Green - Plants a tree
+
 Blue1 - Sleeps
+
 Blue2 - Collects 1 water
+
 Yellow - No sleeping children
+
 Orange - Plants a tree and chops it immediately 
+
 Collected: (2 wood, 2 water)
 
+
 Synchronising:
+
+
 Purple - Active (has not woken up all of its children yet)
+
 Red - Active (was woken up by Purple)
+
 Green - Sleeping
+
 Blue1 - Sleeping
+
 Blue2 - Sleeping
+
 Yellow - Waiting
+
 Orange - Sleeping
+
 Available water reset to 1
+
 1 tree grown
 
-Round 3: There is 1 tree so there are seeds
+
+## Round 3
+There is 1 tree so there are seeds
+
 Purple - Wakes Green
+
 Red - Chops 1 tree
+
 Green - Sleeps
+
 Blue1 - Sleeps
+
 Blue2 - Sleeps
+
 Yellow - Wakes Orange
+
 Orange - Sleeps
+
 Collected: (3 wood, 2 water)
 
+
 Synchronising:
+
 Purple - Active
+
 Red - Sleeping
+
 Green - Active
+
 Blue1 - Sleeping
+
 Blue2 - Sleeping
+
 Yellow - Sleeping (has reset its child 1/1 times)
+
 Orange - Active
+
 Available water reset to 1
 
-Round 4: There are no trees so there are no seeds
+
+## Round 4
+There are no trees so there are no seeds
+
 Purple - Wakes Blue1
+
 Red - Sleeps
+
 Green - Waiting (no seeds)
+
 Blue1 - Sleeps
+
 Blue2 - Sleeps
+
 Yellow - Sleeps
+
 Orange - Waiting
+
 Collected: (3 wood, 2 water)
 
+
 Synchronising:
+
 Purple - Sleeping
+
 Red - Sleeping
+
 Green - Waiting
+
 Blue1 - Active
+
 Blue2 - Sleeping
+
 Yellow - Sleeping
+
 Orange - Waiting
+
 Available water reset to 1
 
-Round 5: There are no trees so there are no seeds
+
+## Round 5
+There are no trees so there are no seeds
+
 Purple - Sleeps
+
 Red - Sleeps
+
 Green - Waiting
+
 Blue1 - Collects 1 water
+
 Blue2 - Sleeps
+
 Yellow - Sleeps
+
 Orange - Waiting
+
 Collected: (3 wood, 3 water)
 
+
 Synchronising:
+
 Purple - Sleeping
+
 Red - Sleeping
+
 Green - Waiting
+
 Blue1 - Sleeping
+
 Blue2 - Sleeping
+
 Yellow - Sleeping
+
 Orange - Waiting
+
 Available water reset to 1
 
-Round 6: There are no trees so there are no seeds
+
+## Round 6
+There are no trees so there are no seeds
+
 Purple - Sleeps
+
 Red - Sleeps
+
 Green - Waiting
+
 Blue1 - Sleeps
+
 Blue2 - Sleeps
+
 Yellow - Sleeps
+
 Orange - Waiting
+
 Collected: (3 wood, 3 water)
 
+
 Synchronising:
+
 Purple - Sleeping
+
 Red - Sleeping
+
 Green - Waiting
+
 Blue1 - Sleeping
+
 Blue2 - Sleeping
+
 Yellow - Sleeping
+
 Orange - Waiting
+
 Available water reset to 1
+
 
 All blobs have been sleeping or waiting for 2 rounds so the simulation ends.
 The target was not met so this solution fails.
